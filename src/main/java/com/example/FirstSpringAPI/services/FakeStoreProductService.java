@@ -33,15 +33,30 @@ public class FakeStoreProductService implements ProductService{
 		
 	}
 	@Override
-	public Product getProductById(Long id) {
-		restTemplate.getForObject("https://fakestoreapi.com/products"+id, FakeStoeProductDTO.class);
-		return convertFakeStoreProductToProduct(null);
+	public Product getProductById(Long id) throws Exception {
+		FakeStoeProductDTO fakeStoreProductDto =  
+				restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoeProductDTO.class);
+		 if (fakeStoreProductDto == null) {
+	            throw new Exception("Invalid productId passed");
+	        }
+
+	        //Convert fakeStoreProductDto to product object.
+	        return convertFakeStoreProductToProduct(fakeStoreProductDto);
+	        //throw new RuntimeException("Something went wrong in FakeStoreProductService");
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		
-		return new ArrayList<Product>();
+		FakeStoeProductDTO[] fakeStoreProductDtos =
+	                restTemplate.getForObject("https://fakestoreapi.com/products/",
+	                		FakeStoeProductDTO[].class);
+
+	        List<Product> products = new ArrayList<>();
+	        for (FakeStoeProductDTO fakeStoreProductDto : fakeStoreProductDtos) {
+	            products.add(convertFakeStoreProductToProduct(fakeStoreProductDto));
+	        }
+
+	        return products;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.example.FirstSpringAPI.Controllers;
 
+import java.io.InvalidClassException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public Product getProductById(@PathVariable("id") Long id) {
-		return new Product();		
+	public Product getProductById(@PathVariable("id") Long id) throws Exception {
+		return productService.getProductById(id);		
 	}
 	
 	@GetMapping()
