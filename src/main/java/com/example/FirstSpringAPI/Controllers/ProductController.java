@@ -1,12 +1,9 @@
 package com.example.FirstSpringAPI.Controllers;
 
-import java.io.InvalidClassException;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.FirstSpringAPI.Models.Product;
 import com.example.FirstSpringAPI.services.ProductService;
@@ -16,19 +13,22 @@ import com.example.FirstSpringAPI.services.ProductService;
 public class ProductController {
 
 	public ProductService productService;
-	
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
 	
 	@GetMapping("/{id}")
-	public Product getProductById(@PathVariable("id") Long id) throws Exception {
+	public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws Exception {
 		return productService.getProductById(id);		
 	}
 	
-	@GetMapping()
+	@GetMapping
 	public List<Product> getProducts(){
 		return productService.getAllProducts();
-		
+	}
+
+	@PutMapping("/{id}")
+	public Product replaceProduct(@PathVariable("id") Long id, @RequestBody Product product){
+		return productService.replaceProduct(id, product);
 	}
 }
