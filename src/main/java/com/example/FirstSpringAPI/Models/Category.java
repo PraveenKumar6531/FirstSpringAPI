@@ -1,36 +1,14 @@
 package com.example.FirstSpringAPI.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Category {
-	private Long id;
+@Entity
+public class Category extends BaseModel{
 	private String description;
-	public Category(Long id, String description) {
-		super();
-		this.id = id;
-		this.description = description;
-	}
-	
-	public Category() {
-		
-	}
-//
-//	public Long getId() {
-//		return id;
-//	}
-//
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
+
 }
