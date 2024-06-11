@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 public class Category extends BaseModel{
 	private String description;
-	@OneToMany
-	private List<Product> products;
+//	@OneToMany
+//	private List<Product> products;
 
 }

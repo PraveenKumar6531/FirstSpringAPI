@@ -25,12 +25,12 @@ class FirstSpringApiApplicationTests {
 
 	@Test
 	void sampleTest(){
-		Optional<Category> optionalCategory = categoryRepository.findById(2L);
-		Category category = optionalCategory.get();
-
-		ProductWithTitleAndDescription product = productRepository.someRandomQuery(2L);
-		System.out.println("Title :"+ product.getTitle());
-		System.out.println("Description :"+ product.getDescription());
+//		Optional<Category> optionalCategory = categoryRepository.findById(2L);
+//		Category category = optionalCategory.get();
+//
+//		ProductWithTitleAndDescription product = productRepository.someRandomQuery(2L);
+//		System.out.println("Title :"+ product.getTitle());
+//		System.out.println("Description :"+ product.getDescription());
 
 
 	}
